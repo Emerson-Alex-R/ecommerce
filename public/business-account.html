@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conta Empresarial - E-Shop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="assets/js/darkmode.js" defer></script>
+    <script src="assets/js/animations.js" defer></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease-out;
+        }
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900">
+    <!-- Navbar -->
+    <nav class="bg-white dark:bg-gray-800 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="/" class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-shopping-bag text-indigo-600 text-2xl mr-2"></i>
+                        <span class="text-xl font-semibold text-gray-800 dark:text-white">E-Shop</span>
+                    </a>
+                    <button onclick="toggleDarkMode()" class="ml-4 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
+                        <i class="fas fa-moon dark:text-white"></i>
+                    </button>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <!-- User Profile -->
+                    <div class="relative">
+                        <button id="userMenuButton" class="flex items-center space-x-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
+                            <i class="fas fa-user-circle text-2xl"></i>
+                            <span class="hidden md:inline-block text-sm font-medium" id="userName">Carregando...</span>
+                        </button>
+                    </div>
+                    
+                    <!-- Logout Button -->
+                    <button onclick="handleLogout()" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
+                        <i class="fas fa-sign-out-alt text-xl"></i>
+                    </button>
+                    <div class="hidden md:ml-6 md:flex md:space-x-8">
+                        <a href="business-dashboard.html" class="text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
+                        <a href="business-management.html" class="text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium">Gestão</a>
+                        <a href="business-compliance.html" class="text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium">Compliance</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Visão Geral da Conta -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Visão Geral da Conta</h3>
+            <p class="text-gray-700 dark:text-gray-300">Aqui você pode visualizar as informações básicas da sua conta, como nome, e-mail e status da conta.</p>
+            <ul class="list-disc pl-5">
+                <li><strong>Nome:</strong> João Silva</li>
+                <li><strong>E-mail:</strong> joao.silva@exemplo.com</li>
+                <li><strong>Status:</strong> Ativo</li>
+            </ul>
+        </div>
+
+        <!-- Informações de Cobrança -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Informações de Cobrança</h3>
+            <p class="text-gray-700 dark:text-gray-300">Detalhes sobre seu plano atual e métodos de pagamento.</p>
+            <ul class="list-disc pl-5">
+                <li><strong>Plano Atual:</strong> Premium</li>
+                <li><strong>Data de Vencimento:</strong> 15 de cada mês</li>
+                <li><strong>Método de Pagamento:</strong> Cartão de Crédito</li>
+            </ul>
+        </div>
+
+        <!-- Configurações da Conta -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Configurações da Conta</h3>
+            <p class="text-gray-700 dark:text-gray-300">Opções para atualizar suas informações de conta, como nome e e-mail.</p>
+            <button class="bg-indigo-600 text-white px-4 py-2 rounded">Atualizar Informações</button>
+        </div>
+
+        <!-- Configurações de Segurança -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Configurações de Segurança</h3>
+            <p class="text-gray-700 dark:text-gray-300">Altere sua senha e ative a autenticação de dois fatores (2FA) para maior segurança.</p>
+            <button class="bg-red-600 text-white px-4 py-2 rounded">Alterar Senha</button>
+            <button class="bg-green-600 text-white px-4 py-2 rounded">Ativar 2FA</button>
+        </div>
+    </div>
+
+    <script src="/assets/js/auth.js"></script>
+    <script src="/assets/js/route-guard.js"></script>
+    <script>
+        // Atualiza o nome do usuário ao carregar a página
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const token = getToken();
+                if (!token) return;
+
+                const response = await fetch(`${API_URL}/auth/me`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (response.ok) {
+                    const user = await response.json();
+                    document.getElementById('userName').textContent = user.name;
+                }
+            } catch (error) {
+                console.error('Erro ao buscar dados do usuário:', error);
+            }
+        });
+    </script>
+</body>
+</html>
